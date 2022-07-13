@@ -12,7 +12,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "should create new category" do
-        post categories_path
-        assert_response :success
+        post categories_path, params: {"category": { "name": "Personal" }}
+        assert_response :redirect
     end
 end
