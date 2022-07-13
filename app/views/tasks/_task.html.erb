@@ -1,25 +1,24 @@
-<p>
-  <strong>Task:</strong>
-  <%= link_to task.name, [task.category, task] %>
-</p>
+<tr>
+  <th>
+    <%= link_to task.name, [task.category, task] %>
+  </th>
 
-<p>
-  <strong>Description:</strong>
-  <%= task.description %>
-</p>
+  <th>
+    <%= task.description %>
+  </th>
 
-<p>
-  <strong>Deadline:</strong>
-  <%= task.deadline %>
-</p>
+  <th>
+    <%= task.deadline %>
+  </th>
 
-<p>
-  <%= link_to "Edit Task", edit_category_task_path(@category.id, task.id) %>
-</p>
+  <th>
+    <%= link_to "Edit Task", edit_category_task_path(@category.id, task.id) %>
+  </th>
 
-<p>
-  <%= link_to "Destroy Task", [task.category, task], data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              } %>
-</p>
+  <th>
+    <%= link_to "Destroy Task", [task.category, task], data: {
+                  turbo_method: :delete,
+                  turbo_confirm: "Are you sure?"
+                } %>
+  </th>
+</tr>

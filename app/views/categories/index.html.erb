@@ -1,12 +1,16 @@
-<h1>Categories</h1>
+<h1>To Do List</h1>
+<h5>Work Hard, Party Harder!</h5>
 
-<ul>
+<%= link_to "New Category", new_category_path, class:"btn btn-primary" %>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Action</th>
+  </tr>
   <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, category %>
-      <%= link_to "Add Task", new_category_task_path(category.id) %>
-    </li>
+    <tr>
+      <th><%= link_to category.name, category %></th>
+      <th><%= link_to "Add Task", new_category_task_path(category.id) %></th>
+    </tr>
   <% end %>
-</ul>
-
-<%= link_to "New Category", new_category_path %>
+</table>

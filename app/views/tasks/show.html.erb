@@ -1,34 +1,27 @@
-<p>
-    <strong>Category:</strong>
-    <%= @category.name %>
-</p>
+<h1>
+    Category: <%= @category.name %>
+    <%= link_to "Back", category_path(@category), class:"btn btn-primary" %>
+</h1>
 
-<p>
-    <strong>Task:</strong>
-</p>
-
-<p>
-    <strong>Name:</strong>
-    <%= @task.name %>
-</p>
-
-<p>
-    <strong>Description:</strong>
-    <%= @task.description %>
-</p>
-
-<p>
-    <strong>Deadline:</strong>
-    <%= @task.deadline %>
-</p>
-
-<p>
-  <%= link_to "Edit Task", edit_category_task_path(@category.id, @task.id) %>
-</p>
-
-<p>
-    <%= link_to "Destroy Task", category_task_path(@category.id, @task.id), data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                } %>
-</p>
+<table>
+    <tr>
+        <th>
+            Task
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Deadline
+        </th>
+        <th>
+            Edit
+        </th>
+        <th>
+            Destroy
+        </th>
+    </tr>
+    <tr>
+        <%= render @task %>
+    </tr>
+</table>
