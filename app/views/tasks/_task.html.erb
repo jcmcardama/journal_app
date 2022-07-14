@@ -1,24 +1,22 @@
-<tr>
-  <th>
-    <%= link_to task.name, [task.category, task] %>
-  </th>
+<th>
+  <%= task.description %>
+</th>
 
-  <th>
-    <%= task.description %>
-  </th>
+<th>
+  <%= task.description %>
+</th>
 
-  <th>
-    <%= task.deadline %>
-  </th>
+<th>
+  <%= task.deadline %>
+</th>
 
-  <th>
-    <%= link_to "Edit Task", edit_category_task_path(@category.id, task.id) %>
-  </th>
+<th>
+  <%= link_to "Edit Task", edit_category_task_path(@category.id, task.id), class:"btn btn-outline-primary" %>
+</th>
 
-  <th>
-    <%= link_to "Destroy Task", [task.category, task], data: {
-                  turbo_method: :delete,
-                  turbo_confirm: "Are you sure?"
-                } %>
-  </th>
-</tr>
+<th>
+  <%= link_to "Destroy Task", [task.category, task], data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              }, class:"btn btn-outline-primary" %>
+</th>

@@ -1,16 +1,18 @@
-<h1>To Do List</h1>
-<h5>Work Hard, Party Harder!</h5>
+<div class="container-fluid">
+  <h1>To Do List</h1>
+  <h5>Work Hard, Party Harder!</h5>
 
-<%= link_to "New Category", new_category_path, class:"btn btn-primary" %>
-<table>
-  <tr>
-    <th>Category</th>
-    <th>Action</th>
-  </tr>
-  <% @categories.each do |category| %>
+  <%= link_to "New Category", new_category_path, class:"btn btn-primary" %>
+  <table>
     <tr>
-      <th><%= link_to category.name, category %></th>
-      <th><%= link_to "Add Task", new_category_task_path(category.id) %></th>
+      <th>Category</th>
+      <th>Action</th>
     </tr>
-  <% end %>
-</table>
+    <% @categories.each do |category| %>
+      <tr>
+        <th><%= link_to category.name, category %></th>
+        <th><%= link_to "Add Task", new_category_task_path(category.id), class:"btn btn-outline-primary" %></th>
+      </tr>
+    <% end %>
+  </table>
+</div>
