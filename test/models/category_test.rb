@@ -10,6 +10,8 @@ class CategoryTest < ActiveSupport::TestCase
 
   def test_task_association
     @category = Category.create(name: "Personal")
-    assert_equal(@category.tasks.length, 0)
+    assert_difference "Category.last.tasks.length", 1 do
+      @task = Task.create(name: "New task", category_id: @category.id)
+    end
   end
 end

@@ -1,16 +1,15 @@
 class TasksController < ApplicationController
+  before_action :get_category
+
   def show
-    @category = Category.find(params[:category_id])
     @task = @category.tasks.find(params[:id]) 
   end
 
   def new
-    @category = Category.find(params[:category_id])
     @task = @category.tasks.build
   end
 
   def create
-    @category = Category.find(params[:category_id])
     @task = @category.tasks.build(task_params)
 
     if @task.save
@@ -21,12 +20,10 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:category_id])
     @task = Task.find(params[:id])
   end
 
   def update
-    @category = Category.find(params[:category_id])
     @task = @category.tasks.find(params[:id])
 
     if @task.update(task_params)
@@ -37,13 +34,16 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:category_id])
     @task = @category.tasks.find(params[:id])
     @task.destroy
     redirect_to category_path(@category), status: 303
   end
     
   private
+  def get_category
+    @category = Category.find(params[:category_id])
+  end
+
   def task_params
     params.require(:task).permit(:name, :description, :deadline)
   end
