@@ -11,6 +11,15 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container" style="height: 100vh;">
+      <div class="row h-100">
+        <div class="col-3">
+          <%= render "layouts/navbar" %>
+        </div>
+        <div class="col-9">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

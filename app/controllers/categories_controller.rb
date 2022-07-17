@@ -1,4 +1,9 @@
 class CategoriesController < ApplicationController
+  def home
+    @categories = Category.all
+    @category = Category.new
+  end
+  
   def index
     @categories = Category.all
   end
