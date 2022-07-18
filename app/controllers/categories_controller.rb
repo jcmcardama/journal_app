@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+
   def home
     @categories = Category.all
     @category = Category.new

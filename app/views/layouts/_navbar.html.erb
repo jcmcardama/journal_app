@@ -5,6 +5,7 @@
         <%= link_to "Categories", categories_path, class:"nav-link" %>
         <a class="nav-link" href="#" data-toggle="tab">Tasks</a>
         <a class="nav-link" href="#" data-toggle="tab">Urgent</a>
+        <%= button_to "signout", destroy_user_session_path, method: :delete, class:"nav-link" %>
     </div>
 </nav>
 
