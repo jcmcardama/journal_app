@@ -1,5 +1,20 @@
 class TasksController < ApplicationController
-  before_action :get_category
+  before_action :authenticate_user!
+  before_action :get_category, only: ['show', 'new', 'edit', 'create', 'update', 'destroy']
+
+  def home
+    @tasks = current_user.tasks.all
+    @due_today = current_user.tasks.where("deadline BETWEEN ? AND ?", Time.now, Time.now.end_of_day)
+    @overdue = current_user.tasks.where("deadline < ?", Time.now)
+  end
+
+  def urgent
+    @tasks = current_user.tasks.where("deadline BETWEEN ? AND ?", Time.now, Time.now.end_of_day)
+  end
+
+  def overdue
+    @tasks = current_user.tasks.where("deadline < ?", Time.now)
+  end
 
   def show
     @task = @category.tasks.find(params[:id]) 
@@ -20,7 +35,7 @@ class TasksController < ApplicationController
   end
 
   def edit
-    @task = Task.find(params[:id])
+    @task = @category.tasks.find(params[:id])
   end
 
   def update

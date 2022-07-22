@@ -1,0 +1,22 @@
+<% @tasks.each do |task| %>
+    <div class="card text-center my-4">
+        <div class="card-header">
+            Category: <%= task.category.name %>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Name: <%= task.name %></h5>
+            <p class="card-text">Description: <%= task.description %></p>
+            <a href=<%= category_task_path(task.category.id, task.id) %> class="btn btn-info" title="View Task"><i class="bi bi-binoculars"></i></a>
+            <a href=<%= edit_category_task_path(task.category.id, task.id) %> class="btn btn-success" title="Edit Task"><i class="bi bi-pencil"></i></a>
+            <%= link_to category_task_path(task.category.id, task.id), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                }, class: "btn btn-danger", title: "Destroy Task" do %>
+                    <i class="bi bi-trash"></i>
+                <% end %>
+        </div>
+        <div class="card-footer text-muted">
+            Deadline: <%= task.deadline %>
+        </div>
+    </div>
+<% end %>

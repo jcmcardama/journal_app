@@ -1,11 +1,31 @@
-<nav class="nav nav-pills flex-column align-items-center">
-    <h2>To Do List</h2>
-    <div class="container-fluid">
-        <%= link_to "Home", root_path, class:"nav-link rounded-pill active" %>
-        <%= link_to "Categories", categories_path, class:"nav-link" %>
-        <a class="nav-link" href="#" data-toggle="tab">Tasks</a>
-        <a class="nav-link" href="#" data-toggle="tab">Urgent</a>
-        <%= button_to "signout", destroy_user_session_path, method: :delete, class:"nav-link" %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary h-100 position-fixed">
+    <div class="container-fluid flex-column align-content-around h-100">
+        <button class="navbar-toggler btn btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <%= link_to root_path, class:"navbar-brand h-25 d-flex align-items-center fs-2" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16"><path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
+            </svg> To Do List 
+        <% end %>
+        <div class="collapse navbar-collapse w-100" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mb-2 mb-lg-0 flex-column w-100 h-100 d-flex justify-content-around">
+                <div class="container">
+                    <li class="nav-item">
+                        <%= link_to "Categories", categories_path, class:"nav-link btn-lg btn-outline-dark d-flex justify-content-center" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Urgent", urgent_path, class:"nav-link btn-lg btn-outline-dark d-flex justify-content-center" %>
+                    </li>
+                    <li class="nav-item">
+                        <%= link_to "Overdue", overdue_path, class:"nav-link btn-lg btn-outline-dark d-flex justify-content-center" %>
+                    </li>
+                </div>
+                <div class="container">
+                    <li class="nav-item d-flex justify-content-center">
+                        <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link btn-lg btn-outline-dark bg-danger" %>
+                    </li>
+                </div>
+            </ul>
+        </div>
     </div>
 </nav>
-

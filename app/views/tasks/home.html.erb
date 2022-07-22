@@ -1,0 +1,19 @@
+<div class="container h-100 d-flex flex-wrap align-content-center">
+    <div class="jumbotron">
+        <h1 class="display-5">Hello, <%= current_user.email %>!</h1>
+        <p class="lead">Today is <%= Time.now %></p>
+        <hr class="my-2">
+        <p>You have <span class="text-primary"><%= @tasks.count %></span> tasks in total</p>
+        <p>You have <span class="text-warning"><%= @due_today.count %></span> urgent tasks in total</p>
+        <p>You have <span class="text-danger"><%= @overdue.count %></span> overdue tasks in total</p>
+        <p class="lead">
+            <div class="container-fluid d-flex justify-content-end">
+                <%= link_to "New Category ", new_category_path, class:"btn btn-primary" %>
+            </div>
+        </p>
+    </div>
+</div>
+
+
+
+
