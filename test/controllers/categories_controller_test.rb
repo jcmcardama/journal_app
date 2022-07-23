@@ -1,6 +1,13 @@
 require "test_helper"
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
+    
+    include Devise::Test::IntegrationHelpers
+    
+    setup do
+        sign_in users(:user1)
+    end
+
     test "should get index" do
         get categories_path
         assert_response :success

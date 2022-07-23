@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get "/home", to: "tasks#home"
   get "/urgent", to: "tasks#urgent"
   get "/overdue", to: "tasks#overdue"
+  get '/users', to: redirect('/users/sign_up')
+
 end

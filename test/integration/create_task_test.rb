@@ -1,6 +1,13 @@
 require "test_helper"
 
 class CreateTaskTest < ActionDispatch::IntegrationTest
+
+    include Devise::Test::IntegrationHelpers
+    
+    setup do
+        sign_in users(:user1)
+    end
+    
     test "should create a new task" do
         @category = Category.create(name: "New Category")
         get new_category_task_path(@category.id)

@@ -1,6 +1,12 @@
 require "test_helper"
 
 class CreateCategoryTest < ActionDispatch::IntegrationTest
+    include Devise::Test::IntegrationHelpers
+    
+    setup do
+        sign_in(users(:one))
+    end
+
     test "should create a new category" do
         get new_category_path 
         assert_response :success
