@@ -22,6 +22,21 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should load home" do
+    get home_path
+    assert_response :success
+  end
+
+  test "should load urgent tasks" do
+    get urgent_path
+    assert_response :success
+  end
+
+  test "should load overdue tasks" do
+    get overdue_path
+    assert_response :success
+  end
+
   test "should create new task" do
     @category = @user.categories.create(name: "Personal")
 

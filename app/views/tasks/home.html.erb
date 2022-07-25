@@ -1,7 +1,7 @@
-<div class="container h-100 d-flex flex-wrap align-content-center">
+<div class="container h-100 d-flex flex-wrap align-content-center justify-content-center">
     <div class="jumbotron">
         <h1 class="display-5">Hello, <%= current_user.email %>!</h1>
-        <p class="lead">Today is <%= Time.now %></p>
+        <p class="lead">Today is <span id="time"></span></p>
         <hr class="my-2">
         <p>You have <span class="text-primary"><%= @tasks.count %></span> tasks in total</p>
         <p>You have <span class="text-warning"><%= @due_today.count %></span> urgent tasks in total</p>
@@ -12,8 +12,7 @@
             </div>
         </p>
     </div>
+    <div class="notice alert-success w-50 text-center">
+        <%= notice %>
+    </div>
 </div>
-
-
-
-

@@ -1,23 +1,30 @@
-<%= form_with model: [@category, @task] do |form| %>
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-    <% @task.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
+<div class="container d-flex flex-wrap h-100 align-content-center justify-content-center">
+  <div class="notice alert-danger w-50 text-center">
+    <div><%= @task.errors.full_messages_for(:name)[0] %></div>
   </div>
 
-  <div>
-    <%= form.label :description %><br>
-    <%= form.text_area :description %>
+  <div class="container h-75 d-flex flex-wrap align-content-center justify-content-center">
+    <%= form_with model: [@category, @task] do |f| %>
+
+      <div class="form-outline mb-4">
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="form-outline mb-4">
+        <%= f.label :description, class: "form-label" %>
+        <%= f.text_area :description, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field form-outline mb-4">
+        <%= f.label :deadline, class: "form-label" %>
+        <%= f.datetime_local_field :deadline, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="actions mb-4 d-flex justify-content-around">
+        <%= f.submit class:"btn btn-primary btn-block" %>
+        <%= link_to "Cancel", category_path(@category.id), class:"btn btn-primary btn-block" %>
+      </div>
+    <% end %>
   </div>
-  
-  <div>
-    <%= form.label :deadline %><br>
-    <%= form.datetime_local_field :deadline %>
-  </div>
-  
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

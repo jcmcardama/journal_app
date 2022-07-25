@@ -4,7 +4,10 @@ class CreateCategoryTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     
     setup do
-        sign_in(users(:one))
+        @user = users(:one)
+        @category = categories(:one)
+
+        sign_in(@user)
     end
 
     test "should create a new category" do

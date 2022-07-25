@@ -5,11 +5,14 @@ class CreateTaskTest < ActionDispatch::IntegrationTest
     include Devise::Test::IntegrationHelpers
     
     setup do
-        sign_in users(:user1)
+        @user = users(:one)
+        @category = categories(:one)
+
+        sign_in(@user)
     end
     
     test "should create a new task" do
-        @category = Category.create(name: "New Category")
+        @category = @user.categories.create(name: "New Category")
         get new_category_task_path(@category.id)
         assert_response :success
 
@@ -18,24 +21,24 @@ class CreateTaskTest < ActionDispatch::IntegrationTest
     end
 
     test "should create a new task and fail" do
-        @category = Category.create(name: "New Category")
+        @category = @user.categories.create(name: "New Category")
         get new_category_task_path(@category.id)
         assert_response :success
 
         post category_tasks_path(@category.id), params: {"task": { "name": "", "category_id": @category.id }}
-        assert_equal Category.last.tasks.length, 0
+        assert_equal @user.categories.last.tasks.length, 0
         assert_response :unprocessable_entity
     end
 
     test "should edit a new task" do
-        @category = Category.create(name: "New Category")
+        @category = @user.categories.create(name: "New Category")
         @task = Task.create(name: "New Task", category_id: @category.id)
         get edit_category_task_path(@category.id, @task.id)
         assert_response :success
     end
 
     test "should update a new task" do
-        @category = Category.create(name: "New Category")
+        @category = @user.categories.create(name: "New Category")
         @task = Task.create(name: "New Task", category_id: @category.id)
         patch category_task_path(@category.id, @task.id), params: {"task": { "name": "Update Task", "category_id": @category.id }}
 
@@ -46,7 +49,7 @@ class CreateTaskTest < ActionDispatch::IntegrationTest
     end
 
     test "should update a new task and fail" do
-        @category = Category.create(name: "New Category")
+        @category = @user.categories.create(name: "New Category")
         @task = Task.create(name: "New Task", category_id: @category.id)
         patch category_task_path(@category.id, @task.id), params: {"task": { "name": "", "category_id": @category.id }}
 
@@ -57,7 +60,7 @@ class CreateTaskTest < ActionDispatch::IntegrationTest
     end
 
     test "should destroy a new task" do
-        @category = Category.create(name: "New Category")
+        @category = @user.categories.create(name: "New Category")
         @task = Task.create(name: "New Task", category_id: @category.id)
         delete category_task_path(@category.id, @task.id)
 

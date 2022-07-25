@@ -1,24 +1,27 @@
-<% @categories.each do |category| %>
-    <div class="card text-center my-4">
-        <div class="card-body">
-            <h5 class="card-title"><%= category.name %></h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href=<%= category_path(category.id) %> class="btn btn-info" title="View Category"><i class="bi bi-binoculars"></i></a>
-            <a href=<%= edit_category_path(category.id) %> class="btn btn-success" title="Edit Category"><i class="bi bi-pencil"></i></a>
-            <%= link_to category_path(category.id), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                }, class: "btn btn-danger", title: "Destroy Category" do %>
-                    <i class="bi bi-trash"></i>
-                <% end %>
-            <a href=<%= new_category_task_path(category.id) %> class="btn btn-primary" title="Add Tasks"><i class="bi bi-plus-circle"></i></i></a>
+<div class="container pt-4">
+    <h1 class="text-center">Categories</h1>
+    <% @categories.each do |category| %>
+        <div class="card text-center my-4">
+            <div class="card-body">
+                <h5 class="card-title"><%= category.name %></h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href=<%= category_path(category.id) %> class="btn btn-info" title="View Category"><i class="bi bi-binoculars"></i></a>
+                <a href=<%= edit_category_path(category.id) %> class="btn btn-success" title="Edit Category"><i class="bi bi-pencil"></i></a>
+                <%= link_to category_path(category.id), data: {
+                        turbo_method: :delete,
+                        turbo_confirm: "Are you sure?"
+                    }, class: "btn btn-danger", title: "Destroy Category" do %>
+                        <i class="bi bi-trash"></i>
+                    <% end %>
+                <a href=<%= new_category_task_path(category.id) %> class="btn btn-primary" title="Add Tasks"><i class="bi bi-plus-circle"></i></i></a>
+            </div>
+            <div class="card-footer text-muted">
+                Tasks: <%= category.tasks.count %>
+            </div>
         </div>
-        <div class="card-footer text-muted">
-            Tasks: <%= category.tasks.count %>
-        </div>
-    </div>
-<% end %>
+    <% end %>
 
-<div class="container-fluid d-flex justify-content-center">
-    <%= link_to "New Category ", new_category_path, class:"btn btn-primary mb-4" %>
+    <div class="container-fluid d-flex justify-content-center">
+        <%= link_to "Add Category", new_category_path, class:"btn btn-primary mb-4" %>
+    </div>
 </div>
